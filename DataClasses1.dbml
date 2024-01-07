@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="UAS_Visprog" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=FERROX\SQLEXPRESS;Initial Catalog=UAS_Visprog;Integrated Security=True" SettingsObjectName="Aplikasi_Project_Apotek_Kimia_Farma.Properties.Settings" SettingsPropertyName="UAS_VisprogConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Medicine" Member="Medicines">
+    <Type Name="Medicine">
+      <Column Name="MedicineID" Type="System.String" DbType="VarChar(8) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MedicineName" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="MedicinePrice" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MedicineQty" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MedicineDate" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Medicine_TransactionDetail" Member="TransactionDetails" ThisKey="MedicineID" OtherKey="MedicineID" Type="TransactionDetail" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Suplier" Member="Supliers">
+    <Type Name="Suplier">
+      <Column Name="SuplierID" Type="System.String" DbType="VarChar(8) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SuplierName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SuplierAddress" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="SuplierPhone" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Customer" Member="Customers">
+    <Type Name="Customer">
+      <Column Name="CustID" Type="System.String" DbType="VarChar(8) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CustName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CustAddress" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="CustPhone" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Employee" Member="Employees">
+    <Type Name="Employee">
+      <Column Name="EmployeeID" Type="System.String" DbType="VarChar(8) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="EmployeeName" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="EmployeePosition" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="EmployeeAddress" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="UserName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Pasword" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Date" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TransactionDetail" Member="TransactionDetails">
+    <Type Name="TransactionDetail">
+      <Column Name="TransactionID" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MedicineID" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="Quantity" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Association Name="Medicine_TransactionDetail" Member="Medicine" ThisKey="MedicineID" OtherKey="MedicineID" Type="Medicine" IsForeignKey="true" />
+      <Association Name="Transaksi_TransactionDetail" Member="Transaksi" ThisKey="TransactionID" OtherKey="TransactionID" Type="Transaksi" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Transaksi" Member="Transaksis">
+    <Type Name="Transaksi">
+      <Column Name="TransactionID" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MedicineName" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="MedicinePrice" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MedicineQuantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Totalharga" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Transaksi_TransactionDetail" Member="TransactionDetail" ThisKey="TransactionID" OtherKey="TransactionID" Type="TransactionDetail" Cardinality="One" />
+    </Type>
+  </Table>
+</Database>
